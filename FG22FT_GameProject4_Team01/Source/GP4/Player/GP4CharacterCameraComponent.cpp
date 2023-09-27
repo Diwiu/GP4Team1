@@ -291,6 +291,7 @@ void UGP4CharacterCameraComponent::SelectEnemyTarget()
 	
 	if(CurrentCameraMode != EPlayerCameraMode::Combat) SetCurrentCameraMode(EPlayerCameraMode::Combat);
 	OnSelectTarget();
+	OnTargetChange.Broadcast();
 }
 
 void UGP4CharacterCameraComponent::SetCurrentCameraMode(const EPlayerCameraMode NewState)
@@ -298,7 +299,10 @@ void UGP4CharacterCameraComponent::SetCurrentCameraMode(const EPlayerCameraMode 
 	CurrentCameraMode = NewState;
 
 	if(NewState != EPlayerCameraMode::Combat)
+	{
 		CurrentCombatTarget = nullptr;
+		OnTargetCancel.Broadcast();
+	}
 
 	bStartNewCameraState = true;
 	TransitionLocation = CameraArmComponent->GetComponentLocation();

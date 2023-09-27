@@ -7,6 +7,9 @@
 class UCameraArmComponent;
 class UCameraComponent;
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnTargetChange);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnTargetCancel);
+
 UENUM(BlueprintType)
 enum class EPlayerCameraMode : uint8
 {
@@ -150,10 +153,18 @@ protected:
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnChangeCameraMode(const EPlayerCameraMode NewMode);
 
-
 	void AutoCameraLoop(float DeltaTime);
 
 	void CombatCameraLoop(float DeltaTime);
+
+public:
+	/** Called when target has changed */
+	UPROPERTY(BlueprintAssignable, Category="CameraComponent|Event")
+	FOnTargetChange OnTargetChange;
+
+	/** Called when targeting is cancelled */
+	UPROPERTY(BlueprintAssignable, Category="CameraComponent|Event")
+	FOnTargetCancel OnTargetCancel;
 	
 public:
 	virtual void BeginPlay() override;
