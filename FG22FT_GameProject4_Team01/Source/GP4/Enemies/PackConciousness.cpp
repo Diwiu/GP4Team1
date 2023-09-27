@@ -66,6 +66,8 @@ void APackConciousness::ReEvaluateWhoseTurnItIs()
 	//Let chosen enemy attack
 	AggroControllers[BestIndex]->GetBlackboardComponent()->SetValueAsBool(TEXT("IsMyTurn"), true);
 	GruntWhoseTurnItIs = AggroControllers[BestIndex]->GetPawn();
+
+	if(!IsValid(GruntWhoseTurnItIs)) return;	
 	Cast<UHealthComponent>(GruntWhoseTurnItIs->GetComponentByClass(UHealthComponent::StaticClass()))->OnDeath.AddUniqueDynamic(this, &APackConciousness::OnEnemyDeath);
 }
 
