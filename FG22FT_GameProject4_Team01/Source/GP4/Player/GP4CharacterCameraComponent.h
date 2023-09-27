@@ -95,9 +95,17 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="CameraComponent|Settings|CombatCamera")
 	FRotator CombatRotationOffset;
 
-	/** Combat arm distance */
+	/** Combat arm default distance */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="CameraComponent|Settings|CombatCamera", meta=(ClampMin=0, UIMin=0))
 	float CombatCameraDistance;
+	
+	/** Combat arm min distance */
+   	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="CameraComponent|Settings|CombatCamera", meta=(ClampMin=0, UIMin=0))
+	float CombatCameraMinDistance;
+
+	/** Combat arm max distance */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="CameraComponent|Settings|CombatCamera", meta=(ClampMin=0, UIMin=0))
+	float CombatCameraMaxDistance;
 
 	/** Multiplier for the CombatCameraInterpSpeed */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="CameraComponent|Settings|CombatCamera", meta=(ClampMin=0, ClampMax = 1, UIMin=0, UIMax=1))
