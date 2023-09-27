@@ -30,6 +30,8 @@ UGP4CharacterCameraComponent::UGP4CharacterCameraComponent()
 
 	CombatRotationOffset = FRotator(-5.f, 0, 0);
 	CombatCameraDistance = 250.f;
+	CombatCameraMinDistance = 50.f;
+	CombatCameraMaxDistance = 1000.f;
 	CombatCameraRotInfluence = 1.f;
 	CombatCameraLocInterpSpeed = 8.f;
 	CombatCameraRotInterpSpeed = FVector2D(1.25f, 1.f);
@@ -143,7 +145,8 @@ void UGP4CharacterCameraComponent::CombatCameraLoop(float DeltaTime)
 	}
 	
 	const float LocDistance = (PawnLocation - CurrentLocation).Length();
-	const float CurrentArmLength = FMath::FInterpTo(CameraArmComponent->TargetArmLength, CombatCameraDistance + LocDistance, DeltaTime, 5.f);
+	const float TargetArmDist = FMath::Clamp(CombatCameraDistance + LocDistance, CombatCameraMinDistance, CombatCameraMaxDistance);
+	const float CurrentArmLength = FMath::FInterpTo(CameraArmComponent->TargetArmLength, TargetArmDist, DeltaTime, 5.f);
 	CameraArmComponent->TargetArmLength = CurrentArmLength;
 
 	CameraArmComponent->SetDesiredLocation(CurrentLocation);
