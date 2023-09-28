@@ -42,14 +42,14 @@ void UGP4UserSettings::SetMasterVolume(const float NewValue)
 	ChangeValue(MasterVolume, NewValue);
 }
 
-float UGP4UserSettings::GetAmbientVolume() const
+float UGP4UserSettings::GetMusicVolume() const
 {
-	return AmbientVolume;
+	return MusicVolume;
 }
 
-void UGP4UserSettings::SetAmbientVolume(const float NewValue)
+void UGP4UserSettings::SetMusicVolume(const float NewValue)
 {
-	ChangeValue(AmbientVolume, NewValue);
+	ChangeValue(MusicVolume, NewValue);
 }
 
 float UGP4UserSettings::GetEffectsVolume() const

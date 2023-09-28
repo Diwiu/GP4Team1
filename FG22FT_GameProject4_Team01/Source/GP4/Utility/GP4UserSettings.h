@@ -37,9 +37,9 @@ public:
 	void SetMasterVolume(const float NewValue);
 
 	UFUNCTION(BlueprintPure, Category="Settings", meta=(Keywords="Settings SaveGame Volume"))
-	float GetAmbientVolume() const;
+	float GetMusicVolume() const;
 	UFUNCTION(BlueprintCallable, Category="Settings", meta=(Keywords="Settings SaveGame Volume"))
-	void SetAmbientVolume(const float NewValue);
+	void SetMusicVolume(const float NewValue);
 	
 	UFUNCTION(BlueprintPure, Category="Settings", meta=(Keywords="Settings SaveGame Volume"))
 	float GetEffectsVolume() const;
@@ -54,7 +54,7 @@ private:
 	UPROPERTY(Config)
 	float MasterVolume = 1.0f;
 	UPROPERTY(Config)
-	float AmbientVolume = 1.0f;
+	float MusicVolume = 1.0f;
 	UPROPERTY(Config)
 	float EffectsVolume = 1.0f;
 		
